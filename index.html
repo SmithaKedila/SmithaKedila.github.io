@@ -17,6 +17,7 @@
 
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -27,21 +28,25 @@
     }
 
     header {
+      height: 100vh;
       background: var(--primary);
       color: var(--accent);
       text-align: center;
-      padding: 3rem 1rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       box-shadow: var(--shadow);
     }
 
     header h1 {
       margin: 0;
-      font-size: 2.8rem;
+      font-size: 3rem;
     }
 
     header p {
-      font-size: 1.2rem;
-      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      margin-top: 1rem;
     }
 
     nav {
@@ -87,33 +92,6 @@
       margin-top: 0;
       color: #a29bfe;
       font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    .content {
-      display: none;
-      margin-top: 1rem;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    .active .content {
-      display: block;
-    }
-    .skills-hidden span {
-      display: inline-block;
-      margin: 0.3rem;
-      padding: 0.5rem 1rem;
-      background-color: #2c2c3a;
-      border-radius: 20px;
-      color: transparent;
-      border: 1px solid #444;
-      transition: color 0.3s ease, background-color 0.3s ease;
-      cursor: default;
-    }
-
-    .skills-hidden span:hover {
-      color: #f8f8f2;
-      background-color: #3c3c5a;
     }
 
     ul {
@@ -131,9 +109,35 @@
       text-decoration: underline;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .skills-section {
+      background: #1e1e2f;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+    }
+
+    .skill-category strong {
+      color: #6c757d;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .skills-visible span {
+      display: inline-block;
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      background-color: #2c2c3a;
+      border-radius: 20px;
+      color: #f8f8f2;
+      border: 1px solid #444;
+      transition: font-weight 0.3s ease, background-color 0.3s ease;
+      cursor: default;
+      font-weight: normal;
+    }
+
+    .skills-visible span:hover {
+      font-weight: bold;
+      background-color: #3c3c5a;
     }
 
     @media (max-width: 600px) {
@@ -149,7 +153,7 @@
 </head>
 <body>
 
-<header>
+<header id="home">
   <h1>Smitha Kedila</h1>
   <p>MS Computer Engineering | San Jose State University</p>
 </header>
@@ -165,9 +169,9 @@
 
 <div class="container">
   <div class="section" id="contact">
-    <h2 onclick="toggleSection(this)">Contact</h2>
-    <div class="content">
-      <p>San Jose, CA</p>
+    <h2>Contact</h2>
+    <p>San Jose, CA</p>
+    <div class="contact">
       <a href="mailto:smitha.kedila@sjsu.edu">smitha.kedila@sjsu.edu</a>
       <a href="https://linkedin.com/in/smithakedila" target="_blank">LinkedIn</a>
       <a href="https://github.com/SmithaKedila" target="_blank">GitHub</a>
@@ -175,88 +179,73 @@
   </div>
 
   <div class="section" id="summary">
-    <h2 onclick="toggleSection(this)">Summary</h2>
-    <div class="content">
-      <p>Graduate student in Computer Engineering at San José State University with 4 years of industry experience in software development, distributed systems, and network engineering. Skilled in C/C++, Python, Go, Verilog HDL, and Java. Experienced in cloud-native platforms, FPGA design (academic), and machine learning frameworks including PyTorch and TensorFlow. Passionate about research in hardware/software co-design, programmable data planes, and distributed ML systems.</p>
-    </div>
+    <h2>Summary</h2>
+    <p>Graduate student in Computer Engineering at San José State University with 4 years of industry experience in software development, distributed systems, and network engineering. Skilled in C/C++, Python, Go, Verilog HDL, and Java. Experienced in cloud-native platforms, FPGA design (academic), and machine learning frameworks including PyTorch and TensorFlow. Passionate about research in hardware/software co-design, programmable data planes, and distributed ML systems.</p>
   </div>
 
   <div class="section" id="education">
-    <h2 onclick="toggleSection(this)">Education</h2>
-    <div class="content">
-      <p><strong>San Jose State University</strong> — MS in Computer Engineering<br/>GPA: 4.0/4.0</p>
-      <p><strong>The National Institute of Engineering</strong> — BE in Electronics & Communication<br/>GPA: 8.9/10</p>
-    </div>
+    <h2>Education</h2>
+    <p><strong>San Jose State University</strong> — MS in Computer Engineering<br/>GPA: 4.0/4.0</p>
+    <p><strong>The National Institute of Engineering</strong> — BE in Electronics & Communication<br/>GPA: 8.9/10</p>
   </div>
 
   <div class="section" id="experience">
-    <h2 onclick="toggleSection(this)">Experience</h2>
-    <div class="content">
-      <p><strong>Software Engineer – Dell, Bengaluru</strong></p>
-      <ul>
-        <li>Implemented namespace-level parallelism in Kubernetes, reducing config overhead by 40%.</li>
-        <li>Optimized volume protection with Go concurrency, reducing time by 60 minutes.</li>
-        <li>Developed scalable features for containerized workloads using Go.</li>
-      </ul>
-      <p><strong>Software Engineer – Versa Networks, Bengaluru</strong></p>
-      <ul>
-        <li>Designed real-time client/server stats using TWAMP.</li>
-        <li>Improved HA by enhancing state recovery and failover in SD-WAN.</li>
-        <li>Reduced downtime by 35%, improved troubleshooting by 40%.</li>
-      </ul>
-    </div>
+    <h2>Experience</h2>
+    <p><strong>Software Engineer – Dell, Bengaluru</strong></p>
+    <ul>
+      <li>Implemented namespace-level parallelism in Kubernetes, reducing config overhead by 40%.</li>
+      <li>Optimized volume protection with Go concurrency, reducing time by 60 minutes.</li>
+      <li>Developed scalable features for containerized workloads using Go.</li>
+    </ul>
+    <p><strong>Software Engineer – Versa Networks, Bengaluru</strong></p>
+    <ul>
+      <li>Designed real-time client/server stats using TWAMP.</li>
+      <li>Improved HA by enhancing state recovery and failover in SD-WAN.</li>
+      <li>Reduced downtime by 35%, improved troubleshooting by 40%.</li>
+    </ul>
   </div>
 
   <div class="section" id="projects">
-    <h2 onclick="toggleSection(this)">Projects</h2>
-    <div class="content">
-      <ul>
-        <li href="https://github.com/SmithaKedila/CMPE256-team5"><strong>MIND News Recommender</strong></li>
-        <li href="https://github.com/SmithaKedila/Health-assistant"><strong>Health Agent (CrewAI):</strong></li>
-        <li href="https://github.com/SmithaKed79/songRecSys"><strong>Song Recommender:</strong></li>
-      </ul>
-    </div>
+    <h2>Projects</h2>
+    <ul>
+      <li><a href="https://github.com/SmithaKedila/CMPE256-team5" target="_blank"><strong>MIND News Recommender</strong></a></li>
+      <li><a href="https://github.com/SmithaKedila/Health-assistant" target="_blank"><strong>Health Agent (CrewAI)</strong></a></li>
+      <li><a href="https://github.com/SmithaKed79/songRecSys" target="_blank"><strong>Song Recommender</strong></a></li>
+    </ul>
   </div>
 
-  <div class="skills-section">
-  <h2>Skills</h2>
-  <div class="skill-category">
-    <strong>Languages</strong>
-    <div class="skills-hidden">
-      <span>C</span><span>C++</span><span>Python</span><span>Java</span>
-      <span>Go</span><span>Verilog HDL</span><span>MATLAB</span>
+  <div class="skills-section" id="skills">
+    <h2>Skills</h2>
+    <div class="skill-category">
+      <strong>Languages</strong>
+      <div class="skills-visible">
+        <span>C</span><span>C++</span><span>Python</span><span>Java</span>
+        <span>Go</span><span>Verilog HDL</span><span>MATLAB</span>
+      </div>
     </div>
-  </div>
-  <div class="skill-category">
-    <strong>Frameworks</strong>
-    <div class="skills-hidden">
-      <span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span>
-      <span>XGBoost</span><span>Spring Boot</span>
+    <div class="skill-category">
+      <strong>Frameworks</strong>
+      <div class="skills-visible">
+        <span>PyTorch</span><span>TensorFlow</span><span>scikit-learn</span>
+        <span>XGBoost</span><span>Spring Boot</span>
+      </div>
     </div>
-  </div>
-  <div class="skill-category">
-    <strong>Tools</strong>
-    <div class="skills-hidden">
-      <span>Kubernetes</span><span>Docker</span><span>Git</span>
-      <span>JUnit</span><span>CrewAI</span><span>Ollama</span>
+    <div class="skill-category">
+      <strong>Tools</strong>
+      <div class="skills-visible">
+        <span>Kubernetes</span><span>Docker</span><span>Git</span>
+        <span>JUnit</span><span>CrewAI</span><span>Ollama</span>
+      </div>
     </div>
-  </div>
-  <div class="skill-category">
-    <strong>Systems</strong>
-    <div class="skills-hidden">
-      <span>RTOS</span><span>Embedded Linux</span><span>SD-WAN</span>
-      <span>Distributed Systems</span>
+    <div class="skill-category">
+      <strong>Systems</strong>
+      <div class="skills-visible">
+        <span>RTOS</span><span>Embedded Linux</span><span>SD-WAN</span>
+        <span>Distributed Systems</span>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-<script>
-  function toggleSection(header) {
-    const section = header.parentElement;
-    section.classList.toggle('active');
-  }
-</script>
 
 </body>
 </html>
